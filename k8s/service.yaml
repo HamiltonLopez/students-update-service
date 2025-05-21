@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: students-update-service
+spec:
+  selector:
+    app: students-update
+  ports:
+    - protocol: TCP
+      port: 8084  # Puerto interno dentro del cluster
+      targetPort: 8080 # Puerto que expone el contenedor
+      nodePort: 30084
+  type: NodePort

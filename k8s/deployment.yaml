@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-update-deployment
+  labels:
+    app: students-update
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: students-update
+  template:
+    metadata:
+      labels:
+        app: students-update
+    spec:
+      containers:
+        - name: students-update
+          image: hamiltonlg/students-update-service:sha-95eee50
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongo-service:27017
